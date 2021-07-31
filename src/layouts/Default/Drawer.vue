@@ -14,14 +14,22 @@
   </v-navigation-drawer>
 </template>
 <script>
-import DefaultList from './List'
-import DefaultDrawerHeader from './DrawerHeader'
+// import DefaultList from './List'
+// import DefaultDrawerHeader from './DrawerHeader'
 
 export default {
   name: 'DefaultDrawer',
   components: {
-    DefaultList,
-    DefaultDrawerHeader,
+    // DefaultList,
+    // DefaultDrawerHeader,
+     DefaultDrawerHeader: () => import(
+      /* webpackChunkName: "default-drawer-header" */
+      './DrawerHeader'
+    ),
+    DefaultList: () => import(
+      /* webpackChunkName: "default-list" */
+      './List'
+    ),
   },
   data: () => ({
     itemsOri: [

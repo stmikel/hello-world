@@ -113,6 +113,7 @@
 <script>
 const exhale = ms =>
     new Promise(resolve => setTimeout(resolve, ms))
+console.log("디폴트 대시보드")
 export default {
 
     data: () => ({

@@ -38,6 +38,7 @@
 </template>
 
 <script>
+console.log("로그쓴 페이지 in페이지 그룹화 됐는지 확인")
 export default {
 
 }

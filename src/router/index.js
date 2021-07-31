@@ -1,29 +1,29 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Dashboard from '@/views/Dashboard'
-import GridSystem from '@/views/GridSystem'
-import GridListPage from '@/views/GridListPage'
-import Breakpoints from '@/views/Breakpoints'
-import Typography from '@/views/Typography'
-import Tables from '@/views/Tables'
-import Form from '@/views/Form'
-import Buttons from '@/views/Buttons'
+// import Dashboard from '@/views/Dashboard'
+// import GridSystem from '@/views/GridSystem'
+// import GridListPage from '@/views/GridListPage'
+// import Breakpoints from '@/views/Breakpoints'
+// import Typography from '@/views/Typography'
+// import Tables from '@/views/Tables'
+// import Form from '@/views/Form'
+// import Buttons from '@/views/Buttons'
 
 
-import SUP from '@/views/SignUp'
 
 
-import ProductList from '@/views/Page/ProductList'
-import SignIn from '@/views/authentication/SignIn'
-import SignUp from '@/views/authentication/SignUp'
-import SignUp1 from '@/views/authentication/SignUp1'
+
+// import ProductList from '@/views/Page/ProductList'
+// import SignIn from '@/views/authentication/SignIn'
+// import SignUp from '@/views/authentication/SignUp'
+// import SignUp1 from '@/views/authentication/SignUp1'
 
 
-import DefaultLayout from '@/layouts/Default/index'
-import PageLayout from '@/layouts/Page/index'
-import AuthenticationLayout from '@/layouts/Authentication/index'
-import reservation from '@/views/reservation'
-import Test from '@/views/Test'
+// import DefaultLayout from '@/layouts/Default/index'
+// import PageLayout from '@/layouts/Page/index'
+// import AuthenticationLayout from '@/layouts/Authentication/index'
+// import reservation from '@/views/reservation'
+// import Test from '@/views/Test'
 
 // const Test = function (resolve) {
 // resolve({
@@ -37,76 +37,86 @@ Vue.use(VueRouter)
 
 const routes = [
         {
-        path: '/',
-        component: DefaultLayout,
+            path: '/',
+            component: () => import(
+              /* webpackChunkName: "layouts-default-index" */
+              '@/layouts/Default/index'
+            ),
         children: [
+            {
+                path: '/',
+                    name: 'Dashboard',
+                    component: () => import(/* webpackChunkName: "views-dashboards-index" */ '@/views/Dashboard')
+              },
             {
                 path: '/test',
                 name: 'Test',
-                component: Test
+                component: () => import(/* webpackChunkName: "views-test-index" */ '@/views/Test')
                 
             },
             {
                 path: '/reservation',
                 name: 'reservation',
-                component: reservation
+                component: () => import(/* webpackChunkName: "views-reservation-index" */ '@/views/reservation')
                 
             },
-            {
-                path: '/s-u-p',
-                name: 'sup',
-                component: SUP
-                
-            },
-            {
-                path: '/',
-                name: 'Dashboard',
-                component: Dashboard
-                
-            },
-            
-            {
+             {
                 path: '/grid-system',
                 name: 'GridSystem',
-                component: GridSystem
-                
-            },
-            {
+                component: () => import(
+                  /* webpackChunkName: "views-grid-system" */
+                  '@/views/GridSystem'
+                )
+              },
+              {
                 path: '/grid-list-page',
                 name: 'GridListPage',
-                component: GridListPage
-                
-            },
-            {
+                component: () => import(
+                  /* webpackChunkName: "views-grid-list-page" */
+                  '@/views/GridListPage'
+                )
+              },
+              {
                 path: '/breakpoints',
                 name: 'Breakpoints',
-                component: Breakpoints
-                
-            },
-            {
+                component: () => import(
+                  /* webpackChunkName: "views-breakpoints" */
+                  '@/views/Breakpoints'
+                )
+              },
+              {
                 path: '/typography',
                 name: 'Typography',
-                component: Typography
-                
-            },
+                component: () => import(
+                  /* webpackChunkName: "views-typography" */
+                  '@/views/Typography'
+                )
+              },
             {
                 path: '/tables',
                 name: 'Tables',
-                component: Tables
-                
-            },
+                component: () => import(
+                  /* webpackChunkName: "views-tables" */
+                  '@/views/Tables'
+                )
+              },
             {
                 path: '/forms',
                 name: 'Form',
-                component: Form
+                component: () => import(
+                    /* webpackChunkName: "views-forms" */
+                    '@/views/Form'
+                )
                 
             },
             {
                 path: '/buttons',
                 name: 'Buttons',
-                component: Buttons
-                
-            },
+                component: () => import(
+                  /* webpackChunkName: "views-buttons" */
+                  '@/views/Buttons'
+                )
+              },
          
 
         ]
@@ -114,24 +124,32 @@ const routes = [
     },
         {
         path:'/authentication',
-        component: AuthenticationLayout,
+        component: () => import(
+            /* webpackChunkName: "layouts-authentication-index" */
+            '@/layouts/Authentication/index'
+            ),
         children: [
             {
                 path:'sign-in',
                 name:'SignIn',
-                component: SignIn
+                // component: SignIn
+                component: () => import(/* webpackChunkName: "views-authentication" */
+                '@/views/authentication/SignIn')
+                //webpackChunkName은 비동기를 그룹화할때 쓰는 특수 주석 : " 그룹명-같이 그룹하고 싶은곳에 같은 이름 적기"
                 
             },
             {
                 path:'sign-up',
                 name:'SignUp',
-                component: SignUp
+                component: () => import(/* webpackChunkName: "views-authentication" */
+                '@/views/authentication/SignUp')
                 
             },
             {
                 path:'sign-up1',
                 name:'SignUp1',
-                component: SignUp1
+                component: () => import(/* webpackChunkName: "views-authentication" */
+                '@/views/authentication/SignUp1')
                 
             },
             
@@ -139,14 +157,18 @@ const routes = [
     },
     {
     path: '/Page',
-    component: PageLayout,
+    component: () => import(
+        /* webpackChunkName: "layouts-page-index" */
+        '@/layouts/Page/index'),
     children: [
         {
             path: 'product-list',
             name: 'ProductList',
-            component: ProductList
-            
-        },
+            component: () => import(
+                /* webpackChunkName: "views-product-list" */
+                '@/views/Page/ProductList'
+              )
+            }
         
     ]
 },

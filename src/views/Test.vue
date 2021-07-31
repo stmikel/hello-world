@@ -5,7 +5,7 @@
 </template>
 
 <script>
-    console.log('loading Test Component')
+    console.log('테스트 페이지 확인중')
 export default {
     
 
